@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Infrastructure for Geo-Distributed Data processing with DynamoDB Global Tables
+
+Resources:
+  GlobalEventTable:
+    Type: AWS::DynamoDB::GlobalTable
+    Properties:
+      TableName: GlobalEventTable
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: Id
+          AttributeType: S
+        - AttributeName: IdempotencyKey
+          AttributeType: S
+      KeySchema:
+        - AttributeName: Id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: IdempotencyIndex
+          KeySchema:
+            - AttributeName: IdempotencyKey
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      Replicas:
+        - Region: us-east-1
+          PointInTimeRecoverySpecification:
+            PointInTimeRecoveryEnabled: true
+        - Region: eu-west-1
+          PointInTimeRecoverySpecification:
+            PointInTimeRecoveryEnabled: true
+
+  EventProcessorLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/task1/
+      Handler: event_processor.lambda_handler
+      Runtime: python3.9
+      Timeout: 30
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref GlobalEventTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref GlobalEventTable
+          REGION: !Ref AWS::Region
+
+  DeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: EventProcessingDLQ
+      MessageRetentionPeriod: 1209600  # 14 days
+
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      EndpointConfiguration: REGIONAL
+
+  EventProcessingStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      DefinitionUri: ../src/task1/state_machine.json
+      Policies:
+        - LambdaInvokePolicy:
+            FunctionName: !Ref EventProcessorLambda
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt DeadLetterQueue.QueueName
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint for event processing
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod/"
+  StateMachineArn:
+    Description: ARN of the Step Functions state machine
+    Value: !Ref EventProcessingStateMachine 
