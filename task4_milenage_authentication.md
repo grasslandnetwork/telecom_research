@@ -83,5 +83,3 @@ Milenage algorithm:
 5. Mobile device computing response
 6. Network verifying response against XRES
 7. Successful authentication and key agreement
-
-Include timing markers and security boundaries in this diagram. 

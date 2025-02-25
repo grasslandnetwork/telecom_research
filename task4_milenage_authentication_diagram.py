@@ -5,9 +5,6 @@ from diagrams.aws.security import SecretsManager
 from diagrams.aws.management import Cloudwatch
 from diagrams.programming.framework import React  # Using React icon as a generic client
 
-# Change to show=True to automatically open the diagram
-# Use filename parameter to specify the exact output file name
-# Add direction="LR" (left to right) for better readability
 with Diagram("Milenage Authentication API", show=True, filename="milenage_authentication_api", direction="LR"):
     client = React("Mobile Network")
     api = APIGateway("REST API")
