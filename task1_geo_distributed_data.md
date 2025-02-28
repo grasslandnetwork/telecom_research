@@ -1,9 +1,23 @@
-# Task 1: Managing Geo-Distributed Data Across AWS Regions
+### **Technical Document for Task 1: Managing Geo-Distributed Data Across AWS Regions**  
 
-## Objective
-Design an active-active architecture to handle concurrent DynamoDB Global Table transactions with conflict resolution and idempotency.
+## **Objective**
+Design an active-active architecture to handle concurrent DynamoDB Global Table transactions with conflict resolution and idempotency.  
 
-## Architecture Overview
+---
+
+## **Index**
+- [Objective](#objective)
+- [Architecture Overview](#architecture-overview)
+- [Class Definitions](#class-definitions)
+- [Interfaces](#interfaces)
+- [AWS Integration](#aws-integration)
+- [Telecom Standards & Justifications](#telecom-standards--justifications)
+- [Unit Tests](#unit-tests)
+- [Running the Tests](#running-the-tests)
+
+---
+
+## **Architecture Overview**  
 - **AWS Serverless Components:**  
   - **DynamoDB Global Tables** (Regions 1 and 2) for cross-region replication.  
   - **Lambda Functions** (Python/Node.js) in each region to process events.  
@@ -13,6 +27,9 @@ Design an active-active architecture to handle concurrent DynamoDB Global Table 
 - **Conflict Resolution Strategy:**  
   - Use **conditional writes** and **last-write-wins** with client-side timestamps.  
   - **AWS AppSync** (optional) for real-time conflict detection.  
+
+- **Diagram**
+  - ![Active-Active Architecture Overview](geo-distributed_data_architecture.png)
 
 ## Class Definitions
 ```python
@@ -52,10 +69,6 @@ class ConflictResolver:
       processor = EventProcessor(dynamo_table, current_region)
       return processor.process_event(event)
   ```
-
-## Unit Tests
-- **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
-- **Test Case 2:** Validate idempotency using repeated idempotency keys.  
 
 ## AWS Integration
 - **Serverless Framework Template:**  
@@ -116,12 +129,11 @@ class ConflictResolver:
 - **TM Forum Open API Standards:** Used for event schema design.
 - **AWS Well-Architected Framework:** Ensures scalability and cost optimization.
 
-## Active-Active Architecture Overview Diagram
+## **Unit Tests**  
+- **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
+- **Test Case 2:** Validate idempotency using repeated idempotency keys.  
 
-![Active-Active Architecture Overview](geo-distributed_data_architecture.png)
-
-## **Running the Implementation**
-
+## **Running the Tests**
 To see the geo-distributed data architecture in action, follow these steps:
 
 ##### Prerequisites
