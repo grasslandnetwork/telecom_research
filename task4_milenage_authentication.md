@@ -48,12 +48,41 @@ class AuthAPI {
 - **Lambda Function Code:**  
   ```javascript
   exports.handler = async (event) => {
-    const { op, secretKey } = JSON.parse(event.body);
-    const auth = new AuthAPI();
-    return auth.handleRequest({ op, secretKey });
+      const { op, secretKey } = JSON.parse(event.body);
+      const auth = new AuthAPI();
+      return auth.handleRequest({ op, secretKey });
   };
   ```
 
+  **CloudFormation Template Excerpt:**
+  ```yaml
+  MilenageAuthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/task4/
+      Handler: auth_api.handler
+      Runtime: nodejs14.x
+      Timeout: 30
+      Environment:
+        Variables:
+          SECRET_KEY_ARN: !Ref OPSecretKey
+      Policies:
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Ref OPSecretKey
+      Events:
+        AuthVector:
+          Type: Api
+          Properties:
+            Path: /generate-av
+            Method: post
+
+  OPSecretKey:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: milenage/op-secret-key
+      Description: Secret keys for Milenage authentication algorithm
+      SecretString: '{"op":"00000000000000000000000000000000","secretKey":"00000000000000000000000000000000"}'
+  ```
 
 ## Standards & Open Source
 - **3GPP TS 35.206:** Direct implementation of Milenage.

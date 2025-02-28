@@ -70,6 +70,48 @@ class ConflictResolver:
           - Region: eu-west-1
   ```
 
+  **CloudFormation Template Excerpt:**
+  ```yaml
+  GlobalEventTable:
+    Type: AWS::DynamoDB::GlobalTable
+    Properties:
+      TableName: GlobalEventTable
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: Id
+          AttributeType: S
+        - AttributeName: IdempotencyKey
+          AttributeType: S
+      KeySchema:
+        - AttributeName: Id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: IdempotencyIndex
+          KeySchema:
+            - AttributeName: IdempotencyKey
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      Replicas:
+        - Region: us-east-1
+          PointInTimeRecoverySpecification:
+            PointInTimeRecoveryEnabled: true
+        - Region: eu-west-1
+          PointInTimeRecoverySpecification:
+            PointInTimeRecoveryEnabled: true
+            
+  EventProcessorLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/task1/
+      Handler: event_processor.lambda_handler
+      Runtime: python3.9
+      Timeout: 30
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref GlobalEventTable
+  ```
+
 ## Telecom Standards & Justifications
 - **TM Forum Open API Standards:** Used for event schema design.
 - **AWS Well-Architected Framework:** Ensures scalability and cost optimization.
