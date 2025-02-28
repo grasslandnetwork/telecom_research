@@ -28,6 +28,13 @@ Design an active-active architecture to handle concurrent DynamoDB Global Table 
   - Use **conditional writes** and **last-write-wins** with client-side timestamps.  
   - **AWS AppSync** (optional) for real-time conflict detection.  
 
+- **Diagram**
+  - ![Active-Active Architecture Overview](geo-distributed_data_architecture.png)
+
+## **Unit Tests**  
+- **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
+- **Test Case 2:** Validate idempotency using repeated idempotency keys.  
+
 ## Class Definitions
 ```python
 class EventProcessor:
@@ -126,13 +133,7 @@ class ConflictResolver:
 - **TM Forum Open API Standards:** Used for event schema design.
 - **AWS Well-Architected Framework:** Ensures scalability and cost optimization.
 
-## Active-Active Architecture Overview Diagram
 
-![Active-Active Architecture Overview](geo-distributed_data_architecture.png)
-
-## **Unit Tests**  
-- **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
-- **Test Case 2:** Validate idempotency using repeated idempotency keys.  
 
 ## **Running the Tests**
 To see the geo-distributed data architecture in action, follow these steps:
