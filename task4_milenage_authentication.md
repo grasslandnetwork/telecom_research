@@ -112,3 +112,50 @@ Milenage algorithm:
 5. Mobile device computing response
 6. Network verifying response against XRES
 7. Successful authentication and key agreement
+
+## **Running the Implementation**
+
+To see the Milenage authentication API in action, follow these steps:
+
+##### Prerequisites
+```bash
+# Install required Python dependencies
+pip install diagrams
+
+# Install required Node.js dependencies
+cd src/task4
+npm install jest crypto
+```
+
+##### Running the Visualizer
+The visualizer demonstrates a complete authentication flow:
+
+```bash
+# From the project root directory
+node src/task4/visualize_flow.js
+```
+
+This will output a step-by-step simulation showing:
+- Authentication request processing
+- OPc calculation
+- Generation of authentication vectors (RAND, XRES, CK, IK, AUTN)
+- Complete API response
+
+##### Running Tests
+Unit tests verify the Milenage implementation against 3GPP test vectors:
+
+```bash
+# From the project root directory
+cd src/task4
+npx jest tests/test_auth_api.js
+```
+
+##### Generating Architecture Diagrams
+To generate the authentication sequence diagram:
+
+```bash
+# From the project root directory
+python src/task4/diagrams/sequence_diagram.py
+```
+
+This will create a diagram file in the current directory showing the authentication process flow.
