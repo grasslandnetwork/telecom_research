@@ -1,7 +1,21 @@
-# Task 4: Implementing 3GPP Milenage Authentication
+### **Technical Document for Task 4: Implementing 3GPP Milenage Authentication**  
 
-## Objective
-Build a Node.js REST API to generate 3G authentication vectors using AWS serverless architecture.
+## **Objective**
+Build a Node.js REST API to generate 3G authentication vectors using AWS serverless.  
+
+---
+
+## **Index**
+- [Objective](#objective)
+- [Architecture Overview](#architecture-overview)
+- [Class Definitions](#class-definitions)
+- [Interfaces](#interfaces)
+- [Unit Tests](#unit-tests)
+- [AWS Integration](#aws-integration)
+- [Standards & Open Source](#standards--open-source)
+- [Running the Implementation](#running-the-implementation)
+
+---
 
 ## Architecture Overview
 - **AWS Components:**  

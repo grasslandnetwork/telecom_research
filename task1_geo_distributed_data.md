@@ -1,9 +1,23 @@
-# Task 1: Managing Geo-Distributed Data Across AWS Regions
+### **Technical Document for Task 1: Managing Geo-Distributed Data Across AWS Regions**  
 
-## Objective
-Design an active-active architecture to handle concurrent DynamoDB Global Table transactions with conflict resolution and idempotency.
+## **Objective**
+Design an active-active architecture to handle concurrent DynamoDB Global Table transactions with conflict resolution and idempotency.  
 
-## Architecture Overview
+---
+
+## **Index**
+- [Objective](#objective)
+- [Architecture Overview](#architecture-overview)
+- [Class Definitions](#class-definitions)
+- [Interfaces](#interfaces)
+- [Unit Tests](#unit-tests)
+- [AWS Integration](#aws-integration)
+- [Telecom Standards & Justifications](#telecom-standards--justifications)
+- [Running the Implementation](#running-the-implementation)
+
+---
+
+#### **1. Architecture Overview**
 - **AWS Serverless Components:**  
   - **DynamoDB Global Tables** (Regions 1 and 2) for cross-region replication.  
   - **Lambda Functions** (Python/Node.js) in each region to process events.  
