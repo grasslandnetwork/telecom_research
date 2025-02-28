@@ -10,9 +10,9 @@ Build a Node.js REST API to generate 3G authentication vectors using AWS serverl
 - [Architecture Overview](#architecture-overview)
 - [Class Definitions](#class-definitions)
 - [Interfaces](#interfaces)
-- [Unit Tests](#unit-tests)
 - [AWS Integration](#aws-integration)
 - [Standards & Open Source](#standards--open-source)
+- [Unit Tests](#unit-tests)
 - [Running the Implementation](#running-the-implementation)
 
 ---
@@ -52,11 +52,6 @@ class AuthAPI {
   Body: { "op": "hex-string", "secretKey": "hex-string" }
   Response: { "RAND": "...", "XRES": "...", ... }
   ```
-
-## Unit Tests
-- **Test Case 1:** Validate output against 3GPP test vectors from TS 35.206.  
-- **Test Case 2:** Ensure error handling for invalid key lengths.
-- **Test Case 3:** Verify proper operation with keys retrieved from Secrets Manager.
 
 ## AWS Integration
 - **Lambda Function Code:**  
@@ -126,6 +121,11 @@ Milenage algorithm:
 5. Mobile device computing response
 6. Network verifying response against XRES
 7. Successful authentication and key agreement
+
+## Unit Tests
+- **Test Case 1:** Validate output against 3GPP test vectors from TS 35.206.  
+- **Test Case 2:** Ensure error handling for invalid key lengths.
+- **Test Case 3:** Verify proper operation with keys retrieved from Secrets Manager.
 
 ## **Running the Implementation**
 

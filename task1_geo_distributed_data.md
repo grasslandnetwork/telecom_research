@@ -10,9 +10,9 @@ Design an active-active architecture to handle concurrent DynamoDB Global Table 
 - [Architecture Overview](#architecture-overview)
 - [Class Definitions](#class-definitions)
 - [Interfaces](#interfaces)
-- [Unit Tests](#unit-tests)
 - [AWS Integration](#aws-integration)
 - [Telecom Standards & Justifications](#telecom-standards--justifications)
+- [Unit Tests](#unit-tests)
 - [Running the Implementation](#running-the-implementation)
 
 ---
@@ -66,10 +66,6 @@ class ConflictResolver:
       processor = EventProcessor(dynamo_table, current_region)
       return processor.process_event(event)
   ```
-
-## Unit Tests
-- **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
-- **Test Case 2:** Validate idempotency using repeated idempotency keys.  
 
 ## AWS Integration
 - **Serverless Framework Template:**  
@@ -133,6 +129,10 @@ class ConflictResolver:
 ## Active-Active Architecture Overview Diagram
 
 ![Active-Active Architecture Overview](geo-distributed_data_architecture.png)
+
+## **Unit Tests**  
+- **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
+- **Test Case 2:** Validate idempotency using repeated idempotency keys.  
 
 ## **Running the Implementation**
 
