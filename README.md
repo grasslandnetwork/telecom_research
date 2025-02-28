@@ -4,13 +4,9 @@ This repository contains solutions for two selected tasks from the Solsys techni
 
 ## Task Selection
 
-1. **Task 1: Managing Geo-Distributed Data** - Design of an active-active architecture for handling concurrent DynamoDB Global Table transactions with conflict resolution and idempotency.
-   - [Technical Document](task1_geo_distributed_data.md)
-   - [Diagram Source](task1_geo_distributed_data_diagram.py)
+1. **[Task 1: Managing Geo-Distributed Data](task1_geo_distributed_data.md)** - Design of an active-active architecture for handling concurrent DynamoDB Global Table transactions with conflict resolution and idempotency.
 
-2. **Task 4: 3GPP Milenage Authentication** - Implementation of a REST API for generating 3G authentication vectors using AWS serverless technologies.
-   - [Technical Document](task4_milenage_authentication.md)
-   - [Diagram Source](task4_milenage_authentication_diagram.py)
+2. **[Task 4: 3GPP Milenage Authentication](task4_milenage_authentication.md)** - Implementation of a REST API for generating 3G authentication vectors using AWS serverless technologies.
 
 ## Implementation Note
 
