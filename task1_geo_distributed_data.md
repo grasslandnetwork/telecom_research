@@ -119,3 +119,45 @@ class ConflictResolver:
 ## Active-Active Architecture Overview Diagram
 
 ![Active-Active Architecture Overview](geo-distributed_data_architecture.png)
+
+## **Running the Implementation**
+
+To see the geo-distributed data architecture in action, follow these steps:
+
+##### Prerequisites
+```bash
+# Install required dependencies
+pip install diagrams pytest
+```
+
+##### Running the Visualizer
+The visualizer demonstrates a complete flow of events across regions, including conflict resolution and idempotency:
+
+```bash
+# From the project root directory
+python src/task1/visualize_flow.py
+```
+
+This will output a step-by-step simulation showing:
+- Events being processed in different regions
+- Global table replication
+- Conflict resolution in action
+- Idempotency key handling
+
+##### Running Tests
+Unit tests verify the core functionality:
+
+```bash
+# From the project root directory
+pytest src/task1/tests/test_event_processor.py -v
+```
+
+##### Generating Architecture Diagrams
+To generate the architecture diagrams:
+
+```bash
+# From the project root directory
+python src/task1/diagrams/sequence_diagram.py
+```
+
+This will create a diagram file in the current directory showing the sequence of operations across regions.
