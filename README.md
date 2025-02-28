@@ -19,6 +19,16 @@ As specified in the requirements, this repository focuses on:
 
 The code is not completely functional with all details implemented, but rather demonstrates the architecture and structure of the solution.
 
+## Running Unit Tests using Mocks of AWS Services
+
+This repository includes mock implementations of AWS services to enable testing without actual AWS resources:
+- **DynamoDB Mocks**: Simulates DynamoDB Global Tables for testing event processing and conflict resolution
+- **Secrets Manager Mocks**: Simulates secure storage for authentication keys
+- **Visualizers**: Demonstrates request flows and component interactions
+- **Mock Crypto Services**: Simulates cryptographic operations for 3GPP authentication
+
+To run the tests with mocks, see the "Running the Tests" section in each task's documentation.
+
 ## Diagrams
 
 Diagrams were generated using the Python `diagrams` library. To regenerate:
