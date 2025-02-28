@@ -17,7 +17,7 @@ Design an active-active architecture to handle concurrent DynamoDB Global Table 
 
 ---
 
-#### **1. Architecture Overview**
+## **Architecture Overview**  
 - **AWS Serverless Components:**  
   - **DynamoDB Global Tables** (Regions 1 and 2) for cross-region replication.  
   - **Lambda Functions** (Python/Node.js) in each region to process events.  

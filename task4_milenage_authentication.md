@@ -17,7 +17,7 @@ Build a Node.js REST API to generate 3G authentication vectors using AWS serverl
 
 ---
 
-## Architecture Overview
+## **Architecture Overview**  
 - **AWS Components:**  
   - **API Gateway** (REST) for endpoint exposure.  
   - **Lambda** (Node.js) for cryptographic processing.  
