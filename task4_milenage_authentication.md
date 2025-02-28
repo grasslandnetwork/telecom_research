@@ -13,7 +13,7 @@ Build a Node.js REST API to generate 3G authentication vectors using AWS serverl
 - [AWS Integration](#aws-integration)
 - [Standards & Open Source](#standards--open-source)
 - [Unit Tests](#unit-tests)
-- [Running the Implementation](#running-the-implementation)
+- [Running the Tests](#running-the-tests)
 
 ---
 
@@ -127,8 +127,7 @@ Milenage algorithm:
 - **Test Case 2:** Ensure error handling for invalid key lengths.
 - **Test Case 3:** Verify proper operation with keys retrieved from Secrets Manager.
 
-## **Running the Implementation**
-
+## **Running the Tests**
 To see the Milenage authentication API in action, follow these steps:
 
 ##### Prerequisites

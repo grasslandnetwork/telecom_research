@@ -13,7 +13,7 @@ Design an active-active architecture to handle concurrent DynamoDB Global Table 
 - [AWS Integration](#aws-integration)
 - [Telecom Standards & Justifications](#telecom-standards--justifications)
 - [Unit Tests](#unit-tests)
-- [Running the Implementation](#running-the-implementation)
+- [Running the Tests](#running-the-tests)
 
 ---
 
@@ -134,8 +134,7 @@ class ConflictResolver:
 - **Test Case 1:** Simulate concurrent updates in two regions and validate conflict resolution.  
 - **Test Case 2:** Validate idempotency using repeated idempotency keys.  
 
-## **Running the Implementation**
-
+## **Running the Tests**
 To see the geo-distributed data architecture in action, follow these steps:
 
 ##### Prerequisites
